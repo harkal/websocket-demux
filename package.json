@@ -1,11 +1,12 @@
 {
   "name": "websocket-demux",
   "version": "1.0.0",
-  "description": "Websocket message demuxer ",
+  "description": "This simple library handles the demultiplexing of requests/responces over a single websocket connection (or not)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Harry Kalogirou",
-  "license": "ISC"
+  "repository": "https://github.com/harkal/websocket-demux.git",
+  "license": "MIT"
 }
