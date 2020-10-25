@@ -5,6 +5,7 @@ let _requests_in_flight = {}
 let _ctx_count = 0
 
 function init(opts) {
+    opts = opts || {}
     _ctx_field = opts.ctx_field || 'cmd_ctx'
     _request_timeout = opts._request_timeout || 10000
 }
@@ -23,6 +24,16 @@ function request(ws, req, callback) {
     }, _request_timeout)
 
     _requests_in_flight[_ctx_count] = [timeout_id, callback]
+}
+
+
+function request_async(ws, req) {
+    return new Promise((resolve, reject) => {
+        request(ws, req, (err, res) => {
+            if (err) reject(err)
+            else resolve(res)
+        })
+    })
 }
 
 function process_message(msg) {
@@ -55,6 +66,7 @@ function socket_closed() {
 module.exports = {
     init,
     request,
+    request_async,
     process_message,
     socket_closed,
 }
